@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  service1:
+    build:
+      context: ./train_project_api
+      # Optional: Specify Dockerfile name if it's not the default 'Dockerfile'
+      # dockerfile: Dockerfile
+    ports:
+      - "3011:3011"  # Map port 8000 inside the container to port 8000 on the host
+    # Other configurations like environment variables, volumes, etc.
+
+  service2:
+    build:
+      context: ./train_project_ui
+      # Optional: Specify Dockerfile name if it's not the default 'Dockerfile'
+      # dockerfile: Dockerfile
+    ports:
+      - "3010:3010"  # Map port 9000 inside the container to port 9000 on the host
+    # Other configurations like environment variables, volumes, etc.
+    depends_on:
+      - service1
