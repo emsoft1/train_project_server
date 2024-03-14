@@ -9,6 +9,10 @@ services:
     ports:
       - "3011:3011"  # Map port 8000 inside the container to port 8000 on the host
     # Other configurations like environment variables, volumes, etc.
+    volumes:
+      - type: bind
+        source: "./train_project_api"
+        target: "/app"
 
   service2:
     build:
@@ -20,3 +24,7 @@ services:
     # Other configurations like environment variables, volumes, etc.
     depends_on:
       - service1
+    volumes:
+      - type: bind
+        source: "./train_project_ui"
+        target: "/app"
